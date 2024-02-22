@@ -1,14 +1,14 @@
 package model;
 
-import java.util.List;
 
-public class StandardPassenger extends Passenger{
+
+public class StandardPassenger extends Passenger {
 
     private double balance;
 
     public StandardPassenger(String name, Integer number, double balance) {
         super(name, number);
-        this.balance=balance;
+        this.balance = balance;
     }
 
     public double getBalance() {
@@ -20,36 +20,19 @@ public class StandardPassenger extends Passenger{
     }
 
     @Override
-    public double getAmountPaid(Activity activity){
+    public double getAmountPaid(Activity activity) {
         return activity.getCost();
     }
 
     @Override
-    public boolean canBuy(Activity activity){
-        return activity.getCost() <=balance;
+    public boolean canBuy(Activity activity) {
+        return activity.getCost() <= balance;
     }
 
     @Override
     public void buy(Activity activity) {
-        balance-= activity.getCost();
+        balance -= activity.getCost();
         signedActivityList.add(activity);
-    }
-
-    @Override
-    public void printSignedActivityList() {
-        System.out.println("Passenger name : " + getName());
-        System.out.println("Balance : " + balance);
-        System.out.println("siz : " + signedActivityList.size());
-        if (!getSignedActivityList().isEmpty()) {
-            System.out.println("List of activities passenger has signed up for :");
-            for (Activity activity : signedActivityList) {
-                System.out.println("Activity name : " + activity.getName());
-                System.out.println("Destination : " + activity.getDestination().getName());
-                System.out.println("Price paid : " + getAmountPaid(activity));
-            }
-        } else {
-            System.out.println("Passenger not signed up for any activities.");
-        }
     }
 
 }

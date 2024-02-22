@@ -6,13 +6,12 @@ import java.util.List;
 public class Destination {
 
     private String name;
+    private List<Activity> activityList;
 
     public Destination(String name) {
         this.name = name;
         this.activityList = new ArrayList<>();
     }
-
-    private List<Activity> activityList;
 
     public String getName() {
         return name;
