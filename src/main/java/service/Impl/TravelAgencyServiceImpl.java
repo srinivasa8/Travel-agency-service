@@ -93,7 +93,7 @@ public class TravelAgencyServiceImpl implements TravelAgencyService {
             for (Activity activity : activityList) {
                 System.out.println("Activity name : " + activity.getName());
                 System.out.println("Destination : " + activity.getDestination().getName());
-                System.out.println("Price paid : " + passenger.getAmountPaid(activity));
+                System.out.println("Price paid : " + passenger.getAmount(activity));
             }
         } else {
             System.out.println("Passenger not signed up for any activities.");
@@ -109,7 +109,7 @@ public class TravelAgencyServiceImpl implements TravelAgencyService {
             for (Activity activity : destination.getActivityList()) {
                 int spaceAvailable = activity.getSpacesAvailable();
                 if (spaceAvailable >= 0) {
-                    activity.printActivityDetails();
+                    printActivityDetails(activity);
                     System.out.println("Space available:" + spaceAvailable);
                     System.out.println();
                 }

@@ -15,7 +15,7 @@ public abstract class Passenger {
         this.signedActivityList = new ArrayList<>();
     }
 
-    public abstract double getAmountPaid(Activity activity);
+    public abstract double getAmount(Activity activity);
 
     public abstract boolean canBuy(Activity activity);
 

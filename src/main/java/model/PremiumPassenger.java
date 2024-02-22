@@ -9,7 +9,7 @@ public class PremiumPassenger extends Passenger{
     }
 
     @Override
-    public double getAmountPaid(Activity activity) {
+    public double getAmount(Activity activity) {
         return 0;
     }
 

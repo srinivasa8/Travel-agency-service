@@ -33,8 +33,4 @@ public class Destination {
         activityList.add(activity);
     }
 
-    public void removeActivity(Activity activity){
-        activityList.remove(activity);
-    }
-
 }

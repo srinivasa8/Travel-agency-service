@@ -69,14 +69,6 @@ public class Activity {
         this.passengerList = passengerList;
     }
 
-    public void printActivityDetails() {
-        System.out.println("Activity name: "+ name);
-        System.out.println("description: "+ description);
-        System.out.println("cost: "+ cost);
-        System.out.println("capacity: "+ cost);
-    }
-
-
     public int getSpacesAvailable(){
         return capacity - passengerList.size();
     }

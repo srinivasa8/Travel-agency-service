@@ -20,7 +20,7 @@ public class StandardPassenger extends Passenger {
     }
 
     @Override
-    public double getAmountPaid(Activity activity) {
+    public double getAmount(Activity activity) {
         return activity.getCost();
     }
 
