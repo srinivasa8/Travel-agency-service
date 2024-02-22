@@ -10,10 +10,7 @@ public class Activity {
     private double cost;
     private Integer capacity;
     private Destination destination;
-    List<Passenger> passengerList;
-
-    // Each activity is available at one destination only.
-    //like one -> many
+    private List<Passenger> passengerList;
 
     public Activity(String name, String description, double cost, Integer capacity, Destination destination) {
         this.name = name;
@@ -85,21 +82,7 @@ public class Activity {
     }
 
     public void addPassenger(Passenger passenger){
-        if(getSpacesAvailable()>0) {
-            passengerList.add(passenger);
-        }
-        else{
-            System.out.println("No space available. Please");
-        }
-    }
-
-    public void removePassenger(Passenger passenger){
-        if(passengerList.contains(passenger)) {
-            passengerList.remove(passenger);
-        }
-        else{
-            System.out.println("No space available. Please");
-        }
+        passengerList.add(passenger);
     }
 
 }

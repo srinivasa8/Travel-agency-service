@@ -11,6 +11,14 @@ public class GoldPassenger extends Passenger {
         this.balance = balance;
     }
 
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
     @Override
     public double getAmountPaid(Activity activity) {
         //10% discount is provided
