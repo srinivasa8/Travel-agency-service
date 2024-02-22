@@ -1,11 +1,28 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Activity {
+
     private String name;
     private String description;
-    private Integer cost;
+    private double cost;
     private Integer capacity;
+    private Destination destination;
+    List<Passenger> passengerList;
+
     // Each activity is available at one destination only.
+    //like one -> many
+
+    public Activity(String name, String description, double cost, Integer capacity, Destination destination) {
+        this.name = name;
+        this.description = description;
+        this.cost = cost;
+        this.capacity = capacity;
+        this.destination = destination;
+        this.passengerList=new ArrayList<>();
+    }
 
     public String getName() {
         return name;
@@ -23,11 +40,11 @@ public class Activity {
         this.description = description;
     }
 
-    public Integer getCost() {
+    public double getCost() {
         return cost;
     }
 
-    public void setCost(Integer cost) {
+    public void setCost(double cost) {
         this.cost = cost;
     }
 
@@ -37,6 +54,52 @@ public class Activity {
 
     public void setCapacity(Integer capacity) {
         this.capacity = capacity;
+    }
+
+    public Destination getDestination() {
+        return destination;
+    }
+
+    public void setDestination(Destination destination) {
+        this.destination = destination;
+    }
+
+    public List<Passenger> getPassengerList() {
+        return passengerList;
+    }
+
+    public void setPassengerList(List<Passenger> passengerList) {
+        this.passengerList = passengerList;
+    }
+
+    public void printActivityDetails() {
+        System.out.println("Activity name: "+ name);
+        System.out.println("description: "+ description);
+        System.out.println("cost: "+ cost);
+        System.out.println("capacity: "+ cost);
+    }
+
+
+    public int getSpacesAvailable(){
+        return capacity - passengerList.size();
+    }
+
+    public void addPassenger(Passenger passenger){
+        if(getSpacesAvailable()>0) {
+            passengerList.add(passenger);
+        }
+        else{
+            System.out.println("No space available. Please");
+        }
+    }
+
+    public void removePassenger(Passenger passenger){
+        if(passengerList.contains(passenger)) {
+            passengerList.remove(passenger);
+        }
+        else{
+            System.out.println("No space available. Please");
+        }
     }
 
 }
