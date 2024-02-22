@@ -18,8 +18,8 @@ public interface TravelAgencyService {
     /**
      * Books the requested travelPackage for the passenger.
      *
-     * @Param Passenger The Passenger requesting the booking. Must not be null. if null, the method has no effect.
-     * @param TravelPackage The travel package to be booked. Must not be null. if null, the method has no effect.
+     * @Param passenger The Passenger requesting the booking. Must not be null. if null, the method has no effect.
+     * @param  travelPackage The travel package to be booked. Must not be null. if null, the method has no effect.
      *
      * @throws Exception if there is no capacity available on the travel package.
      */
@@ -28,8 +28,8 @@ public interface TravelAgencyService {
     /**
      * Books the requested activity for the passenger.
      *
-     * @Param Passenger The Passenger requesting the booking. Must not be null. if null, the method has no effect.
-     * @Param Activity The activity to be booked. Must not be null. if null, the method has no effect.
+     * @Param passenger The Passenger requesting the booking. Must not be null. if null, the method has no effect.
+     * @Param activity The activity to be booked. Must not be null. if null, the method has no effect.
      *
      * @throws Exception if passenger doesn't have sufficient balance to book the ticket or if
      * there is no capacity available on the activity.
@@ -53,7 +53,7 @@ public interface TravelAgencyService {
     /**
      * Prints the passenger details along with the list of activities that the passenger has signed up for.
      *
-     * @Param Passenger The Passenger for whom the details will be printed. Must not be null. if null, the method has no effect.
+     * @Param passenger The Passenger for whom the details will be printed. Must not be null. if null, the method has no effect.
      * */
     void printPassengerDetails(Passenger passenger);
 

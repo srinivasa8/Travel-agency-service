@@ -16,7 +16,7 @@ public class Main {
 
             TravelAgencyService travelAgencyService = new TravelAgencyServiceImpl();
 
-            Passenger p1 = new StandardPassenger("p1", 1, 1);
+            Passenger p1 = new StandardPassenger("p1", 1, 100);
             Passenger p2 = new GoldPassenger("p2", 2, 100);
             Passenger p3 = new PremiumPassenger("p3", 3);
 
@@ -39,9 +39,6 @@ public class Main {
 
             travelAgencyService.bookActivity(p1, activity1);
             travelAgencyService.bookActivity(p1, activity2);
-
-            travelAgencyService.bookActivity(p2, activity2);
-            travelAgencyService.bookActivity(p3, activity2);
 
             System.out.println("------------------------------------------------------");
             travelAgencyService.printItinerary(travelPackage);

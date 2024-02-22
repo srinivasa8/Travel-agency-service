@@ -45,12 +45,16 @@ public class TravelAgencyServiceImpl implements TravelAgencyService {
     @Override
     public void printItinerary(TravelPackage travelPackage) {
         if (travelPackage == null) return;
-        System.out.println("Travel package name:" + travelPackage.getName());
+        System.out.println("Travel package name: " + travelPackage.getName());
         for (Destination destination : travelPackage.getDestinationList()) {
-            System.out.println("Destination:" + destination.getName());
-            System.out.println("List of Activities : ");
-            for (Activity activity : destination.getActivityList()) {
-                printActivityDetails(activity);
+            List<Activity> activityList = destination.getActivityList();
+            if(!activityList.isEmpty()) {
+                System.out.println("Destination: " + destination.getName());
+                System.out.println("List of Activities: ");
+                for (Activity activity : activityList) {
+                    printActivityDetails(activity);
+                    System.out.println();
+                }
             }
         }
     }
@@ -66,12 +70,12 @@ public class TravelAgencyServiceImpl implements TravelAgencyService {
     public void printPassengerList(TravelPackage travelPackage) {
         if (travelPackage == null) return;
         System.out.println("Travel package name:" + travelPackage.getName());
-        System.out.println("Passenger capacity:" + travelPackage.getCapacity());
+        System.out.println("Passenger capacity: " + travelPackage.getCapacity());
         List<Passenger> passengerList = travelPackage.getPassengerList();
-        System.out.println("Number of passengers currently enrolled:" + passengerList.size());
+        System.out.println("Number of passengers currently enrolled: " + passengerList.size());
         for (Passenger passenger : travelPackage.getPassengerList()) {
-            System.out.println("Passenger name:" + passenger.getName());
-            System.out.println("Passenger number:" + passenger.getNumber());
+            System.out.println("Passenger name: " + passenger.getName());
+            System.out.println("Passenger number: " + passenger.getNumber());
         }
     }
 
@@ -91,9 +95,9 @@ public class TravelAgencyServiceImpl implements TravelAgencyService {
         if (!activityList.isEmpty()) {
             System.out.println("List of activities passenger has signed up for :");
             for (Activity activity : activityList) {
-                System.out.println("Activity name : " + activity.getName());
-                System.out.println("Destination : " + activity.getDestination().getName());
-                System.out.println("Price paid : " + passenger.getAmount(activity));
+                System.out.println("Activity name: " + activity.getName());
+                System.out.println("Destination: " + activity.getDestination().getName());
+                System.out.println("Price paid: " + passenger.getAmount(activity));
             }
         } else {
             System.out.println("Passenger not signed up for any activities.");
@@ -105,15 +109,18 @@ public class TravelAgencyServiceImpl implements TravelAgencyService {
         if (travelPackage == null) return;
         System.out.println("List of Activities with available spaces : ");
         for (Destination destination : travelPackage.getDestinationList()) {
-            System.out.println("For Destination:" + destination.getName());
-            for (Activity activity : destination.getActivityList()) {
-                int spaceAvailable = activity.getSpacesAvailable();
-                if (spaceAvailable >= 0) {
-                    printActivityDetails(activity);
-                    System.out.println("Space available:" + spaceAvailable);
-                    System.out.println();
+            List<Activity> activityList = destination.getActivityList();
+            if (!activityList.isEmpty()){
+                System.out.println("For Destination:" + destination.getName());
+                for (Activity activity : activityList) {
+                    int spaceAvailable = activity.getSpacesAvailable();
+                    if (spaceAvailable >= 0) {
+                        printActivityDetails(activity);
+                        System.out.println("Space available:" + spaceAvailable);
+                        System.out.println();
+                    }
                 }
-            }
+        }
         }
     }
 
