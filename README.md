@@ -13,7 +13,7 @@ This Java application has been developed as part of an assignment with the goal 
 
 ## High-Level Diagram:
 
-![img_2.png](img_2.png)
+![HLD.png](HLD.png)
 
 ## Low-Level Diagram:
 
