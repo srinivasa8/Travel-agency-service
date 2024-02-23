@@ -17,7 +17,8 @@ This Java application has been developed as part of an assignment with the goal 
 
 ## Low Level diagram:
 
-![LLD.png](LLD.png)
+![LLD.png](LLD.png)!
+
 ## Steps to run the application
 1. Clone or download the Spring Boot project from the repository (if not already available).    
    ```bash
