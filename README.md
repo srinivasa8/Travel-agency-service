@@ -13,7 +13,7 @@ This Java application has been developed as part of an assignment with the goal 
 
 ## High-Level Diagram:
 
-![HLD.png](HLD.png)
+![img_2.png](img_2.png)
 
 ## Low-Level Diagram:
 
@@ -25,7 +25,7 @@ This Java application has been developed as part of an assignment with the goal 
    https://github.com/srinivasa8/travel-agency-service.git
 2.	Open the project using an IDE like IntelliJ IDEA, Eclipse, or Spring Tool Suite.
 3. Using the terminal or within your IDE, execute mvn clean install to build the project and ensure the build completes successfully without any errors.
-4. Locate the Driver class file and Run it to start the application.
+4. Locate the Main class file and Run it to start the application.
 5. Once the application runs, Please Check the console output for the output as shown below:  
    <br>
    ![Output_screenshot1.png](Output_screenshot1.png)  
