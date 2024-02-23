@@ -13,12 +13,11 @@ This Java application has been developed as part of an assignment with the goal 
 
 ## High Level diagram:
 
- ![img_2.png](img_2.png)
+![HLD.png](HLD.png)
 
 ## Low Level diagram:
 
-![img_3.png](img_3.png)
-
+![LLD.png](LLD.png)
 ## Steps to run the application
 1. Clone or download the Spring Boot project from the repository (if not already available).    
    ```bash
@@ -27,8 +26,8 @@ This Java application has been developed as part of an assignment with the goal 
 3. Using the terminal or within your IDE, execute mvn clean install to build the project and ensure the build completes successfully without any errors.
 4. Locate the Driver class file and Run it to start the application.
 5. Once the application runs, Please Check the console output for the output as shown below:
-   ![img_4.png](img_4.png)
+   ![Output_screenshot1.png](Output_screenshot1.png)
 
-   ![img_5.png](img_5.png)
+   ![Output_screenshot2.png](Output_screenshot2.png)
 
 

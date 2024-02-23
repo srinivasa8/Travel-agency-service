@@ -33,7 +33,8 @@ public class TravelAgencyServiceImpl implements TravelAgencyService {
 
     @Override
     public void addDestinationToTravelPackage(Destination destination, String travelPackageName) throws Exception {
-        if (destination == null || travelPackageName == null || travelPackageName.isEmpty()) throw new Exception("Invalid input!");
+        if (destination == null || travelPackageName == null || travelPackageName.isEmpty())
+            throw new Exception("Invalid input!");
         travelPackageRepository.addDestinationToTravelPackage(destination, travelPackageName);
     }
 

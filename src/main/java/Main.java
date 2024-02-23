@@ -10,7 +10,6 @@ import service.TravelAgencyService;
 
 public class Main {
 
-
     public static void main(String[] args) {
         try {
 
@@ -54,9 +53,8 @@ public class Main {
 
             System.out.println("------------------------------------------------------");
             travelAgencyService.printPassengerDetails(p1);
-        }
-        catch(Exception e){
-            System.out.println("Exception occurred: " +e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Exception occurred: " + e.getMessage());
         }
     }
 }

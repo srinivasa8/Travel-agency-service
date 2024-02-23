@@ -1,7 +1,5 @@
 package model;
 
-
-
 public class StandardPassenger extends Passenger {
 
     private double balance;

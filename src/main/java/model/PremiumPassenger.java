@@ -1,7 +1,5 @@
 package model;
 
-import java.util.List;
-
 public class PremiumPassenger extends Passenger{
 
     public PremiumPassenger(String name, Integer number) {
