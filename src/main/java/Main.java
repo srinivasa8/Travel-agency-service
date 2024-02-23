@@ -29,25 +29,28 @@ public class Main {
             destination1.addActivity(activity1);
             destination1.addActivity(activity2);
 
+            String travelPackageName = "Goa trip";
             TravelPackage travelPackage = new TravelPackage("Goa trip", 3);
+            travelAgencyService.createTravelPackage(travelPackage);
 
-            travelAgencyService.addDestination(destination1, travelPackage);
-            travelAgencyService.addDestination(destination2, travelPackage);
-            travelAgencyService.bookTravelPackage(p1, travelPackage);
-            travelAgencyService.bookTravelPackage(p2, travelPackage);
-            travelAgencyService.bookTravelPackage(p3, travelPackage);
+            travelAgencyService.addDestinationToTravelPackage(destination1, travelPackageName);
+            travelAgencyService.addDestinationToTravelPackage(destination2, travelPackageName);
+
+            travelAgencyService.bookTravelPackage(p1, travelPackageName);
+            travelAgencyService.bookTravelPackage(p2, travelPackageName);
+            travelAgencyService.bookTravelPackage(p3, travelPackageName);
 
             travelAgencyService.bookActivity(p1, activity1);
             travelAgencyService.bookActivity(p1, activity2);
 
             System.out.println("------------------------------------------------------");
-            travelAgencyService.printItinerary(travelPackage);
+            travelAgencyService.printItinerary(travelPackageName);
 
             System.out.println("------------------------------------------------------");
-            travelAgencyService.printPassengerList(travelPackage);
+            travelAgencyService.printPassengerList(travelPackageName);
 
             System.out.println("------------------------------------------------------");
-            travelAgencyService.printAvailableActivities(travelPackage);
+            travelAgencyService.printAvailableActivities(travelPackageName);
 
             System.out.println("------------------------------------------------------");
             travelAgencyService.printPassengerDetails(p1);

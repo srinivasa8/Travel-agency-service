@@ -6,20 +6,40 @@ import model.GoldPassenger;
 import model.Passenger;
 import model.StandardPassenger;
 import model.TravelPackage;
+import repositories.TravelPackageRepository;
 import service.TravelAgencyService;
 
 import java.util.List;
 
 public class TravelAgencyServiceImpl implements TravelAgencyService {
 
+    private final TravelPackageRepository travelPackageRepository;
+
+    public TravelAgencyServiceImpl() {
+        this.travelPackageRepository = new TravelPackageRepository();
+    }
+
     @Override
-    public void addDestination(Destination destination, TravelPackage travelPackage) {
-        travelPackage.addDestination(destination);
+    public void createTravelPackage(TravelPackage travelPackage) throws Exception {
+        if (travelPackage == null) throw new Exception("Travel package name can't be null");
+        travelPackageRepository.createTravelPackage(travelPackage);
+    }
+
+    @Override
+    public void updateTravelPackage(TravelPackage travelPackage) throws Exception {
+        if (travelPackage == null) throw new Exception("Travel package name can't be null");
+        travelPackageRepository.updateTravelPackage(travelPackage);
+    }
+
+    @Override
+    public void addDestinationToTravelPackage(Destination destination, String travelPackageName) throws Exception {
+        if (destination == null || travelPackageName == null || travelPackageName.isEmpty()) throw new Exception("Invalid input!");
+        travelPackageRepository.addDestinationToTravelPackage(destination, travelPackageName);
     }
 
     @Override
     public void bookActivity(Passenger passenger, Activity activity) throws Exception {
-        if (passenger == null || activity == null) return;
+        if (passenger == null || activity == null) throw new Exception("Invalid Input!");
         if (passenger.canBuy(activity)) {
             passenger.buy(activity);
         } else {
@@ -33,22 +53,25 @@ public class TravelAgencyServiceImpl implements TravelAgencyService {
     }
 
     @Override
-    public void bookTravelPackage(Passenger passenger, TravelPackage travelPackage) throws Exception {
-        if (travelPackage == null || passenger == null) return;
+    public void bookTravelPackage(Passenger passenger, String travelPackageName) throws Exception {
+        if (travelPackageName == null || travelPackageName.isEmpty()) throw new Exception("Invalid input!");
+        TravelPackage travelPackage = travelPackageRepository.getTravelPackageByName(travelPackageName);
         if (travelPackage.getSpacesAvailable() > 0) {
-            travelPackage.addPassenger(passenger);
+            travelPackageRepository.addPassengerToTravelPackage(passenger, travelPackageName);
         } else {
             throw new Exception("No spaces available for the travel package :" + travelPackage.getName());
         }
     }
 
     @Override
-    public void printItinerary(TravelPackage travelPackage) {
-        if (travelPackage == null) return;
-        System.out.println("Travel package name: " + travelPackage.getName());
-        for (Destination destination : travelPackage.getDestinationList()) {
+    public void printItinerary(String travelPackageName) throws Exception {
+        if (travelPackageName == null || travelPackageName.isEmpty()) throw new Exception("Invalid input!");
+        System.out.println("LIST OF DESTINATIONS(ITINERARY) FOR: " + travelPackageName);
+        List<Destination> destinationList = travelPackageRepository.getDestinationByTravelPackageName(travelPackageName);
+        System.out.println("Travel package name: " + travelPackageName);
+        for (Destination destination : destinationList) {
             List<Activity> activityList = destination.getActivityList();
-            if(!activityList.isEmpty()) {
+            if (!activityList.isEmpty()) {
                 System.out.println("Destination: " + destination.getName());
                 System.out.println("List of Activities: ");
                 for (Activity activity : activityList) {
@@ -67,9 +90,11 @@ public class TravelAgencyServiceImpl implements TravelAgencyService {
     }
 
     @Override
-    public void printPassengerList(TravelPackage travelPackage) {
-        if (travelPackage == null) return;
-        System.out.println("Travel package name:" + travelPackage.getName());
+    public void printPassengerList(String travelPackageName) throws Exception {
+        if (travelPackageName == null || travelPackageName.isEmpty()) throw new Exception("Invalid input!");
+        System.out.println("LIST OF PASSENGERS FOR: " + travelPackageName);
+        TravelPackage travelPackage = travelPackageRepository.getTravelPackageByName(travelPackageName);
+        System.out.println("Travel package name:" + travelPackageName);
         System.out.println("Passenger capacity: " + travelPackage.getCapacity());
         List<Passenger> passengerList = travelPackage.getPassengerList();
         System.out.println("Number of passengers currently enrolled: " + passengerList.size());
@@ -82,14 +107,15 @@ public class TravelAgencyServiceImpl implements TravelAgencyService {
     @Override
     public void printPassengerDetails(Passenger passenger) {
         if (passenger == null) return;
-        System.out.println("Passenger name : " + passenger.getName());
+        System.out.println("PASSENGER DETAILS: ");
+        System.out.println("Passenger name: " + passenger.getName());
         if (passenger instanceof StandardPassenger) {
             StandardPassenger standardPassenger = (StandardPassenger) passenger;
-            System.out.println("Balance : " + standardPassenger.getBalance());
+            System.out.println("Balance: " + standardPassenger.getBalance());
         }
         if (passenger instanceof GoldPassenger) {
             GoldPassenger goldPassenger = (GoldPassenger) passenger;
-            System.out.println("Balance : " + goldPassenger.getBalance());
+            System.out.println("Balance: " + goldPassenger.getBalance());
         }
         List<Activity> activityList = passenger.getSignedActivityList();
         if (!activityList.isEmpty()) {
@@ -105,12 +131,13 @@ public class TravelAgencyServiceImpl implements TravelAgencyService {
     }
 
     @Override
-    public void printAvailableActivities(TravelPackage travelPackage) {
-        if (travelPackage == null) return;
-        System.out.println("List of Activities with available spaces : ");
-        for (Destination destination : travelPackage.getDestinationList()) {
+    public void printAvailableActivities(String travelPackageName) throws Exception {
+        if (travelPackageName == null || travelPackageName.isEmpty()) throw new Exception("Invalid input!");
+        System.out.println("LIST OF ACTIVITIES WITH AVAILABLE SPACES: ");
+        List<Destination> destinationList = travelPackageRepository.getDestinationByTravelPackageName(travelPackageName);
+        for (Destination destination : destinationList) {
             List<Activity> activityList = destination.getActivityList();
-            if (!activityList.isEmpty()){
+            if (!activityList.isEmpty()) {
                 System.out.println("For Destination:" + destination.getName());
                 for (Activity activity : activityList) {
                     int spaceAvailable = activity.getSpacesAvailable();
@@ -120,7 +147,7 @@ public class TravelAgencyServiceImpl implements TravelAgencyService {
                         System.out.println();
                     }
                 }
-        }
+            }
         }
     }
 
