@@ -29,8 +29,5 @@ This Java application has been developed as part of an assignment with the goal 
 5. Once the application runs, Please Check the console output for the output as shown below:  
    <br>
    ![Output_screenshot1.png](Output_screenshot1.png)  
-<br>
-
+   <br>
    ![Output_screenshot2.png](Output_screenshot2.png)
-
-
